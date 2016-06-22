@@ -5,10 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-      "build": "browserify -e client/main.js -o public/app.js",
+      "compile": "browserify -e client/main.js -o public/app.js",
 	  "assets": "cp client/index.html public/index.html",
 	  "clean": "rm -rf public",
-	  "dist": "npm run clean && mkdir public && npm run build && npm run assets"
+	  "build": "npm run clean && mkdir public && npm run compile && npm run assets"
   },
   "author": "",
   "license": "ISC",
