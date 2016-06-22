@@ -14,6 +14,9 @@ const Board = sequelize.define("board", {
 		type: Sequelize.STRING,
 		allowNull: false,
 		unique: true
+	},
+	description: {
+		type: Sequelize.STRING
 	}
 });
 
