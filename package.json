@@ -5,10 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-      "compile": "browserify -e client/main.js -o public/app.js",
-	  "assets": "cp client/index.html public/index.html",
-	  "clean": "rm -rf public",
-	  "build": "npm run clean && mkdir public && npm run compile && npm run assets"
+    "compile": "browserify -e client/main.js -o public/app.js",
+    "assets": "cp client/index.html public/index.html",
+    "clean": "rm -rf public",
+    "build": "npm run clean && mkdir public && npm run compile && npm run assets"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +20,7 @@
     "mysql": "2.11.1",
     "sequelize": "3.23.3",
     "vue": "1.0.25",
+    "vue-resource": "0.8.0",
     "vue-router": "0.7.13"
   },
   "devDependencies": {

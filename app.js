@@ -1,6 +1,7 @@
 "use strict";
 
-const app = require("express")();
+const express = require("express");
+const app = express();
 const bodyParser = require("body-parser");
 const db = require("./database");
 
@@ -52,7 +53,9 @@ app.get("/uploads/:id", (req, res) => {
 
 });
 
-app.get('/*', function(req, res) {
+app.use(express.static(__dirname + "/public"));
+
+app.get("/*", function(req, res) {
 	res.sendFile(__dirname + "/public/index.html");
 });
 
@@ -63,3 +66,12 @@ db.connect().then(() => {
 }).catch(err => {
 	console.error(err);
 });
+
+function addTestBoard() {
+	db.createBoard({
+		name: "/t2",
+		description: "test board 2"
+	}).then(() => {
+		console.log("board created");
+	});
+}
