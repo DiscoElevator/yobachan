@@ -1,7 +1,8 @@
-import {Component} from "@angular/core";
-import {Top} from "client/components/top/top";
+import {Component, ViewEncapsulation} from "@angular/core";
+import {Top} from "./components/top/top";
 
 @Component({
+	encapsulation: ViewEncapsulation.None,
 	selector: "app",
 	directives: [Top],
 	template: `<top></top>
