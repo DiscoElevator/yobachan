@@ -1,12 +1,5 @@
-import Vue from "vue";
-import Resource from "vue-resource";
-import App from "./app.vue";
-
-Vue.use(Resource);
-
-new Vue({
-	el: 'body',
-	components: {
-		app: App
-	}
-});
+"use strict";
+var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
+var app_1 = require('./app');
+platform_browser_dynamic_1.bootstrap(app_1.App);
+//# sourceMappingURL=main.js.map
