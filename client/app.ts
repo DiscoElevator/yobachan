@@ -1,7 +1,15 @@
 import {Component} from "@angular/core";
+import {Top} from "client/components/top/top";
 
 @Component({
 	selector: "app",
-	template: `<top></top>`
+	directives: [Top],
+	template: `<top></top>
+	<div>Some text</div>
+<style>
+body {
+	background-color: #faebd7;
+}
+</style>`
 })
 export class App {};

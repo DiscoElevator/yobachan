@@ -2,7 +2,13 @@ import {Component} from "@angular/core";
 
 @Component({
 	selector: "board-list",
-	templateUrl: "board-list.html",
-	styleUrls: ["board-list.css"]
+	templateUrl: "client/components/top/board-list/board-list.html",
+	styleUrls: ["client/components/top/board-list/board-list.css"]
 })
-export class BoardList {};
+export class BoardList {
+	boards = [{
+		name: "/test1"
+	}, {
+		name: "/test2"
+	}]
+};
