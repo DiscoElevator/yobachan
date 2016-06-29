@@ -86,6 +86,13 @@ module.exports = {
 			}
 		});
 	},
+	getBoardByName(boardName) {
+		return Board.findOne({
+			where: {
+				name: boardName
+			}
+		});
+	},
 	getBoards() {
 		return Board.findAll();
 	}

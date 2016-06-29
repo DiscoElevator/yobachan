@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "gulp",
-      "postinstall": "typings install",
-	  "start": "node app.js"
+    "postinstall": "typings install",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",

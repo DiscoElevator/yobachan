@@ -19,9 +19,13 @@ app.get("/api/boards", (req, res) => {
 	});
 });
 
-app.get("/api/:boardId", (req, res) => {
-	db.getBoardThreads(req.params.boardId).then(threads => {
-		res.status(200).json(threads);
+app.get("/api/:boardName", (req, res) => {
+	db.getBoardByName(req.params.boardName).then(board => {
+		db.getBoardThreads(board.id).then(threads => {
+			let result = board;
+			result.threads = threads || [];
+			res.status(200).json(result);
+		});
 	});
 });
 
@@ -69,7 +73,7 @@ db.connect().then(() => {
 
 function addTestBoard() {
 	db.createBoard({
-		name: "/t2",
+		name: "t2",
 		description: "test board 2"
 	}).then(() => {
 		console.log("board created");
