@@ -1,2 +1,5 @@
 node_modules
 public
+typings
+client/**/*.js
+client/**/*.map
