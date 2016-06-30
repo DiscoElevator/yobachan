@@ -1,14 +1,16 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
 import {Router, ActivatedRoute} from '@angular/router';
 import {BoardService} from "../../services/board-service";
+import {ThreadList} from "./thread-list/thread-list";
 
 @Component({
-	moduleId: module.id,
+	directives: [ThreadList],
 	selector: "board",
-	template: "<div>{{board.name}}</div>"
+	template: `<div>{{board.name}}</div><thread-list [threads]="threads"></thread-list>`
 })
 export class Board {
 	private board = {};
+	private threads = [];
 
 	private sub: any;
 
@@ -21,8 +23,10 @@ export class Board {
 		this.sub = this.route.params.subscribe(params => {
 			let boardName = params["boardName"];
 			this.boardService.getBoard(boardName).then(board => {
-				console.log(board);
 				this.board = board;
+				this.boardService.getBoardThreads(boardName).then(threads => {
+					this.threads = threads;
+				});
 			});
 		});
 	}

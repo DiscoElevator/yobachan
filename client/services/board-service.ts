@@ -12,4 +12,8 @@ export class BoardService {
 	getBoard(boardName: string) {
 		return this.http.get("/api/" + boardName).toPromise().then(res => res.json());
 	}
+
+	getBoardThreads(boardName: string) {
+		return this.http.get("/api/" + boardName + "/threads").toPromise().then(res => res.json());
+	}
 };

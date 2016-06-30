@@ -21,11 +21,13 @@ app.get("/api/boards", (req, res) => {
 
 app.get("/api/:boardName", (req, res) => {
 	db.getBoardByName(req.params.boardName).then(board => {
-		db.getBoardThreads(board.id).then(threads => {
-			let result = board;
-			result.threads = threads || [];
-			res.status(200).json(result);
-		});
+		res.status(200).json(board);
+	});
+});
+
+app.get("/api/:boardName/threads", (req, res) => {
+	db.getBoardThreads(req.params.boardName).then(threads => {
+		res.status(200).json(threads);
 	});
 });
 
@@ -36,14 +38,15 @@ app.get("/api/thread/:id", (req, res) => {
 });
 
 app.post("/api/thread", (req, res) => {
-	let post = req.body.post;
+	let post = req.body;
 	db.createThread(post).then(() => {
 		res.status(200).json({});
 	});
 });
 
 app.post("/api/thread/:id", (req, res) => {
-	let post = req.body.post;
+	let post = req.body;
+	post.topicId = req.params.id;
 	db.createPost(post).then(() => {
 		res.status(200).json({});
 	});

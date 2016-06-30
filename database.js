@@ -5,15 +5,11 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize("mysql://root@localhost/test1", {});
 
 const Board = sequelize.define("board", {
-	id: {
-		type: Sequelize.INTEGER,
-		primaryKey: true,
-		autoIncrement: true
-	},
 	name: {
 		type: Sequelize.STRING,
 		allowNull: false,
-		unique: true
+		unique: true,
+		primaryKey: true
 	},
 	description: {
 		type: Sequelize.STRING
@@ -38,12 +34,12 @@ const Post = sequelize.define("post", {
 		type: Sequelize.INTEGER,
 		allowNull: true
 	},
-	boardId: {
-		type: Sequelize.INTEGER,
+	boardName: {
+		type: Sequelize.STRING,
 		allowNull: false,
 		references: {
 			model: Board,
-			key: "id"
+			key: "name"
 		}
 	}
 });
@@ -76,11 +72,11 @@ module.exports = {
 			}
 		});
 	},
-	getBoardThreads(boardId) {
+	getBoardThreads(boardName) {
 		return Post.findAll({
 			where: {
 				$and: {
-					boardId: boardId,
+					boardName: boardName,
 					isOpPost: true
 				}
 			}
