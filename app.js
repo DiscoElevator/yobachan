@@ -46,7 +46,7 @@ app.post("/api/thread", (req, res) => {
 
 app.post("/api/thread/:id", (req, res) => {
 	let post = req.body;
-	post.topicId = req.params.id;
+	post.threadId = req.params.id;
 	db.createPost(post).then(() => {
 		res.status(200).json({});
 	});

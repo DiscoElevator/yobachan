@@ -1,0 +1,19 @@
+.post {
+	background-color: #dcd8d2;
+	border-style: solid;
+    border-width: 1px;
+	margin-bottom: 10px;
+}
+
+.post-controls {
+	border-bottom: 1px dashed;
+}
+
+.post-id {
+	color: #94032a;
+    font-weight: bold;
+}
+
+.op-post {
+	background-color: #f7f4f0;
+}

@@ -2,9 +2,10 @@ import {Component, OnInit, OnDestroy} from "@angular/core";
 import {Router, ActivatedRoute} from '@angular/router';
 import {BoardService} from "../../services/board-service";
 import {ThreadList} from "./thread-list/thread-list";
+import {ThreadViewComponent} from "./thread-view/thread-view";
 
 @Component({
-	directives: [ThreadList],
+	directives: [ThreadList, ThreadViewComponent],
 	selector: "board",
 	template: `<div>{{board.name}}</div><thread-list [threads]="threads"></thread-list>`
 })

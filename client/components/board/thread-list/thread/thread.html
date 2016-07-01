@@ -1,6 +1,6 @@
 <div class="thread">
 	<div class="thread-controls">
 		<span class="thread-id">#{{thread.id}}</span>
-		<a href="#">Reply</a></div>
+		<a [routerLink]="['/', thread.boardName, thread.id]">Reply</a></div>
 	<div class="thread-content">{{thread.text}}</div>
 </div>

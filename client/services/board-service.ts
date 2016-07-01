@@ -29,4 +29,8 @@ export class BoardService {
 	getBoardThreads(boardName: string) {
 		return this.http.get("/api/" + boardName + "/threads").toPromise().then(res => res.json());
 	}
+
+	getThreadPosts(threadId: number) {
+		return this.http.get("/api/thread/" + threadId).toPromise().then(res => res.json());
+	}
 };

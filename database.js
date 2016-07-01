@@ -30,7 +30,7 @@ const Post = sequelize.define("post", {
 		type: Sequelize.BOOLEAN,
 		defaultValue: false
 	},
-	topicId: {
+	threadId: {
 		type: Sequelize.INTEGER,
 		allowNull: true
 	},
@@ -46,7 +46,7 @@ const Post = sequelize.define("post", {
 
 Post.belongsTo(Post, {
 	targetKey: "id",
-	foreignKey: "topicId"
+	foreignKey: "threadId"
 });
 
 module.exports = {
@@ -66,10 +66,14 @@ module.exports = {
 		return Board.create(board);
 	},
 	getThreadPosts(threadId) {
-		return Post.findAll({
+		let opPostPromise = Post.findOne({where: {id: threadId}});
+		let threadPostsPromise = Post.findAll({
 			where: {
 				threadId: threadId
 			}
+		});
+		return Promise.all([opPostPromise, threadPostsPromise]).then(posts => {
+			return [posts[0], ...posts[1]];
 		});
 	},
 	getBoardThreads(boardName) {
