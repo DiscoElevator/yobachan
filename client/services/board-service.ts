@@ -33,4 +33,23 @@ export class BoardService {
 	getThreadPosts(threadId: number) {
 		return this.http.get("/api/thread/" + threadId).toPromise().then(res => res.json());
 	}
+
+	createThread(post: any) {
+		return this.http.post("/api/thread", post).toPromise().then(res => res.json());
+	}
+
+	createPost(post: any) {
+		return this.http.post("/api/thread/" + post.threadId, post).toPromise().then(res => res.json());
+	}
+
+	post(post) {
+		if (!post) {
+			return Promise.reject("no post");
+		}
+		if (post.threadId) {
+			return this.createPost(post);
+		} else {
+			return this.createThread(post);
+		}
+	}
 };

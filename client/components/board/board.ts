@@ -3,11 +3,12 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {BoardService} from "../../services/board-service";
 import {ThreadList} from "./thread-list/thread-list";
 import {ThreadViewComponent} from "./thread-view/thread-view";
+import {PostingFormComponent} from "./posting-form/posting-form";
 
 @Component({
-	directives: [ThreadList, ThreadViewComponent],
+	directives: [ThreadList, ThreadViewComponent, PostingFormComponent],
 	selector: "board",
-	template: `<div>{{board.name}}</div><thread-list [threads]="threads"></thread-list>`
+	template: `<div>{{board.name}}</div><thread-list [threads]="threads"></thread-list><posting-form [boardName]="board.name" (onPostCreated)="onPostCreated($event)"></posting-form>`
 })
 export class Board {
 	private board = {};
@@ -34,5 +35,11 @@ export class Board {
 
 	ngOnDestroy() {
 		this.sub.unsubscribe();
+	}
+
+	onPostCreated(newPost) {
+		if (newPost.isOpPost) {
+			this.threads = [...this.threads, newPost];
+		}
 	}
 };

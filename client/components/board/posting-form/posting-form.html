@@ -1,0 +1,7 @@
+<div (click)="toggle()">Post something</div>
+<div [class.hidden]="hidden">
+	<form class="posting-form">
+		<textarea [(ngModel)]="post.text" name="text"></textarea>
+		<button (click)="createPost()" type="submit">Post</button>
+	</form>
+</div>

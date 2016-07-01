@@ -39,16 +39,16 @@ app.get("/api/thread/:id", (req, res) => {
 
 app.post("/api/thread", (req, res) => {
 	let post = req.body;
-	db.createThread(post).then(() => {
-		res.status(200).json({});
+	db.createThread(post).then(newPost => {
+		res.status(200).json(newPost);
 	});
 });
 
 app.post("/api/thread/:id", (req, res) => {
 	let post = req.body;
 	post.threadId = req.params.id;
-	db.createPost(post).then(() => {
-		res.status(200).json({});
+	db.createPost(post).then(newPost => {
+		res.status(200).json(newPost);
 	});
 });
 
