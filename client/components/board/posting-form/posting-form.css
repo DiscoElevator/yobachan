@@ -1,3 +1,7 @@
 .hidden {
 	display: none;
 }
+
+.posting-form-open-link {
+	cursor: pointer;
+}

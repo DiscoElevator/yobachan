@@ -39,4 +39,8 @@ export class ThreadViewComponent {
 	onPostCreated(newPost) {
 		this.posts = [...this.posts, newPost];
 	}
+
+	onPostingError(err) {
+		console.log("Posting error:", err);
+	}
 };

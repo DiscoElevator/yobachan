@@ -1,7 +1,7 @@
-<div (click)="toggle()">Post something</div>
+<div class="posting-form-open-link" (click)="toggle()">Post something</div>
 <div [class.hidden]="hidden">
 	<form class="posting-form">
-		<textarea [(ngModel)]="post.text" name="text"></textarea>
-		<button (click)="createPost()" type="submit">Post</button>
+		<textarea [(ngModel)]="post.text" name="text" [disabled]="loadInProgress"></textarea>
+		<button (click)="createPost()" type="submit" [disabled]="loadInProgress">Post</button>
 	</form>
 </div>

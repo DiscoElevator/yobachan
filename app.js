@@ -16,24 +16,32 @@ app.use(bodyParser.json());
 app.get("/api/boards", (req, res) => {
 	db.getBoards().then(boards => {
 		res.status(200).json(boards);
+	}).catch(err => {
+		res.status(500).json(err);
 	});
 });
 
 app.get("/api/:boardName", (req, res) => {
 	db.getBoardByName(req.params.boardName).then(board => {
 		res.status(200).json(board);
+	}).catch(err => {
+		res.status(500).json(err);
 	});
 });
 
 app.get("/api/:boardName/threads", (req, res) => {
 	db.getBoardThreads(req.params.boardName).then(threads => {
 		res.status(200).json(threads);
+	}).catch(err => {
+		res.status(500).json(err);
 	});
 });
 
 app.get("/api/thread/:id", (req, res) => {
 	db.getThreadPosts(req.params.id).then(posts => {
 		res.status(200).json(posts);
+	}).catch(err => {
+		res.status(500).json(err);
 	});
 });
 
@@ -41,6 +49,8 @@ app.post("/api/thread", (req, res) => {
 	let post = req.body;
 	db.createThread(post).then(newPost => {
 		res.status(200).json(newPost);
+	}).catch(err => {
+		res.status(500).json(err);
 	});
 });
 
@@ -49,6 +59,8 @@ app.post("/api/thread/:id", (req, res) => {
 	post.threadId = req.params.id;
 	db.createPost(post).then(newPost => {
 		res.status(200).json(newPost);
+	}).catch(err => {
+		res.status(500).json(err);
 	});
 });
 

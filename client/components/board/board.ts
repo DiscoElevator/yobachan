@@ -8,7 +8,7 @@ import {PostingFormComponent} from "./posting-form/posting-form";
 @Component({
 	directives: [ThreadList, ThreadViewComponent, PostingFormComponent],
 	selector: "board",
-	template: `<div>{{board.name}}</div><thread-list [threads]="threads"></thread-list><posting-form [boardName]="board.name" (onPostCreated)="onPostCreated($event)"></posting-form>`
+	templateUrl: "board.html"
 })
 export class Board {
 	private board = {};
@@ -41,5 +41,9 @@ export class Board {
 		if (newPost.isOpPost) {
 			this.threads = [...this.threads, newPost];
 		}
+	}
+
+	onPostingError(err) {
+		console.log("Posting error:", err);
 	}
 };
