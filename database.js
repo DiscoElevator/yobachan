@@ -23,7 +23,7 @@ const Post = sequelize.define("post", {
 		autoIncrement: true
 	},
 	text: {
-		type: Sequelize.STRING,
+		type: Sequelize.TEXT,
 		allowNull: false
 	},
 	isOpPost: {
