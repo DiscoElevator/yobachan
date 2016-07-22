@@ -1,4 +1,4 @@
 <div class="thread-view">
-	<post *ngFor="let post of posts" [post]="post"></post>
+	<post *ngFor="let post of posts" [post]="post" [class.isOpPost]="post.isOpPost"></post>
 </div>
 <posting-form [threadId]="threadId" [boardName]="boardName" (onPostCreated)="onPostCreated($event)" (onError)="onPostingError($event)"></posting-form>
