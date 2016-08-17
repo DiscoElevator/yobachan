@@ -39,7 +39,7 @@ export class Board {
 
 	onPostCreated(newPost) {
 		if (newPost.isOpPost) {
-			this.threads = [...this.threads, newPost];
+			this.threads.push(newPost);
 		}
 	}
 

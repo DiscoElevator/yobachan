@@ -1,3 +1,5 @@
 <div>{{board.name}}</div>
 <thread-list [threads]="threads"></thread-list>
-<posting-form [boardName]="board.name" (onPostCreated)="onPostCreated($event)" (onError)="onPostingError($event)"></posting-form>
+<posting-form [boardName]="board.name"
+			  (onPostCreated)="onPostCreated($event)"
+			  (onError)="onPostingError($event)"></posting-form>
