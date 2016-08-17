@@ -1,6 +1,6 @@
-import {RouterConfig} from "@angular/router";
+import {Routes} from "@angular/router";
 import {ThreadViewComponent} from "./thread-view/thread-view";
 
-export const BoardRoutes: RouterConfig = [
+export const BoardRoutes: Routes = [
 	{path: ":boardName/:threadId", component: ThreadViewComponent}
 ];
