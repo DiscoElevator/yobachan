@@ -10,7 +10,7 @@ export class BoardService {
 	getBoards() {
 		return this.http.get("/api/boards").toPromise().then(res => res.json()).then(boards => {
 			this.boards = boards;
-			return boards;
+			return Array.from(boards);
 		});
 	}
 

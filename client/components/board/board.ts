@@ -11,7 +11,7 @@ import {PostingFormComponent} from "./posting-form/posting-form";
 	templateUrl: "board.html"
 })
 export class Board {
-	private board = {};
+	private board;
 	private threads = [];
 
 	private sub: any;

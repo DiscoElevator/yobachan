@@ -6,12 +6,13 @@ import {FormsModule} from "@angular/forms";
 import {App} from "./app";
 import {routes, appRoutingProviders} from './routes';
 import {BoardService} from "./services/board-service";
+import {BoardNamePipe} from "./pipes/board-name-pipe";
 import {Board} from "./components/board/board";
 import {Dashboard} from "./components/dashboard/dashboard";
 
 @NgModule({
-	declarations: [App, Board, Dashboard],
-	imports: [BrowserModule, routes, FormsModule],
+	declarations: [App, Board, Dashboard, BoardNamePipe],
+	imports: [BrowserModule, routes, FormsModule, RouterModule],
 	bootstrap: [App],
 	providers: [appRoutingProviders, BoardService]
 })

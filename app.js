@@ -79,18 +79,29 @@ app.get("/*", function(req, res) {
 });
 
 db.connect().then(() => {
-	app.listen(3000, () => {
-		console.log("Server started");
+	addTestBoards().then(() => {
+		console.log("Test boards initialized");
+		app.listen(3000, () => {
+			console.log("Server started");
+		});
 	});
 }).catch(err => {
 	console.error(err);
 });
 
-function addTestBoard() {
-	db.createBoard({
-		name: "t2",
-		description: "test board 2"
-	}).then(() => {
-		console.log("board created");
+function addTestBoards() {
+	return db.getBoards().then(boards => {
+		if (!boards) {
+			return Promise.all([createBoard("t1", "test board 1"), createBoard("t2", "test board 2")]);
+		} else {
+			return Promise.resolve();
+		}
 	});
+
+	function createBoard(name, description) {
+		return db.createBoard({
+			name,
+			description
+		});
+	}
 }
