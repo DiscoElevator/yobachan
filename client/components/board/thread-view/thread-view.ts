@@ -10,7 +10,7 @@ import {PostingFormComponent} from "../posting-form/posting-form";
 	templateUrl: "thread-view.html",
 	styleUrls: ["thread-view.css"]
 })
-export class ThreadViewComponent {
+export class ThreadViewComponent implements OnInit, OnDestroy {
 	private posts = [];
 	private threadId: number;
 	private boardName: string;
@@ -37,7 +37,7 @@ export class ThreadViewComponent {
 	}
 
 	onPostCreated(newPost) {
-		this.posts = [...this.posts, newPost];
+		this.posts.push(newPost);
 	}
 
 	onPostingError(err) {

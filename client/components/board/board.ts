@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
-import {Router, ActivatedRoute} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {BoardService} from "../../services/board-service";
 import {ThreadList} from "./thread-list/thread-list";
 import {ThreadViewComponent} from "./thread-view/thread-view";
@@ -10,7 +10,7 @@ import {PostingFormComponent} from "./posting-form/posting-form";
 	selector: "board",
 	templateUrl: "board.html"
 })
-export class Board {
+export class Board implements OnInit, OnDestroy {
 	private board;
 	private threads = [];
 
@@ -18,7 +18,6 @@ export class Board {
 
 	constructor(
 		private route: ActivatedRoute,
-		private router: Router,
 		private boardService: BoardService) {}
 
 	ngOnInit() {

@@ -11,8 +11,8 @@ import {BoardService} from "../../../services/board-service";
 export class PostingFormComponent {
 	@Input() threadId: number;
 	@Input() boardName: string;
-	@Output() onPostCreated = new EventEmitter<any>();
-	@Output() onError = new EventEmitter<any>();
+	@Output() postCreated = new EventEmitter<any>();
+	@Output() error = new EventEmitter<any>();
 
 	private hidden: boolean = true;
 	private post: any = {};
@@ -31,11 +31,11 @@ export class PostingFormComponent {
 		post.threadId = this.threadId;
 		this.boardService.post(post).then(newPost => {
 			this.post = {};
-			this.onPostCreated.emit(newPost);
+			this.postCreated.emit(newPost);
 			this.loadInProgress = false;
 		}).catch(err => {
 			this.loadInProgress = false;
-			this.onError.emit(err);
+			this.error.emit(err);
 		});
 	}
 };
