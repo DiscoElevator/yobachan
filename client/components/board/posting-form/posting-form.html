@@ -2,6 +2,6 @@
 <div [class.hidden]="hidden">
 	<form class="posting-form">
 		<textarea [(ngModel)]="post.text" name="text" [disabled]="loadInProgress"></textarea>
-		<button (click)="createPost()" type="submit" [disabled]="loadInProgress">Post</button>
+		<button (click)="createPost()" type="submit" [disabled]="loadInProgress || !post.text">Post</button>
 	</form>
 </div>
