@@ -1,3 +1,7 @@
+:host(.op-post) {
+	width: 100%;
+}
+
 .post {
 	background-color: #dcd8d2;
 	border-style: solid;
