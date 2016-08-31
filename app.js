@@ -38,7 +38,14 @@ app.get("/api/:boardName/threads", (req, res) => {
 });
 
 app.get("/api/thread/:id", (req, res) => {
-	db.getThreadPosts(req.params.id).then(posts => {
+	let startFrom = req.query.startFrom || 0;
+	let promise;
+	if (startFrom) {
+		promise = db.getThreadUpdates(req.params.id, startFrom);
+	} else {
+		promise = db.getThreadPosts(req.params.id);
+	}
+	promise.then(posts => {
 		res.status(200).json(posts);
 	}).catch(err => {
 		res.status(500).json(err);

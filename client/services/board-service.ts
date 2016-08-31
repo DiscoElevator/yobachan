@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {Http, URLSearchParams} from "@angular/http";
 
 @Injectable()
 export class BoardService {
@@ -19,7 +19,7 @@ export class BoardService {
 		if (board) {
 			return Promise.resolve(board);
 		} else {
-			return this.http.get("/api/" + boardName).toPromise().then(res => res.json()).then(newBoard => {
+			return this.http.get(`/api/${boardName}`).toPromise().then(res => res.json()).then(newBoard => {
 				this.boards.push(newBoard);
 				return newBoard;
 			});
@@ -27,11 +27,17 @@ export class BoardService {
 	}
 
 	getBoardThreads(boardName: string) {
-		return this.http.get("/api/" + boardName + "/threads").toPromise().then(res => res.json());
+		return this.http.get(`/api/${boardName}/threads`).toPromise().then(res => res.json());
+	}
+
+	getThreadUpdates(threadId: number, startFrom: number = 0) {
+		let queryParams = new URLSearchParams();
+		queryParams.set("startFrom", `${startFrom}`);
+		return this.http.get(`/api/thread/${threadId}`, {search: queryParams}).toPromise().then(res => res.json());
 	}
 
 	getThreadPosts(threadId: number) {
-		return this.http.get("/api/thread/" + threadId).toPromise().then(res => res.json());
+		return this.http.get(`/api/thread/${threadId}`).toPromise().then(res => res.json());
 	}
 
 	createThread(post: any) {
@@ -39,7 +45,7 @@ export class BoardService {
 	}
 
 	createPost(post: any) {
-		return this.http.post("/api/thread/" + post.threadId, post).toPromise().then(res => res.json());
+		return this.http.post(`/api/thread/${post.threadId}`, post).toPromise().then(res => res.json());
 	}
 
 	post(post) {

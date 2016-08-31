@@ -65,8 +65,11 @@ module.exports = {
 	createBoard(board) {
 		return Board.create(board);
 	},
+	getOpPost(threadId) {
+		return Post.findOne({where: {id: threadId}});
+	},
 	getThreadPosts(threadId) {
-		let opPostPromise = Post.findOne({where: {id: threadId}});
+		let opPostPromise = this.getOpPost(threadId);
 		let threadPostsPromise = Post.findAll({
 			where: {
 				threadId: threadId
@@ -74,6 +77,17 @@ module.exports = {
 		});
 		return Promise.all([opPostPromise, threadPostsPromise]).then(posts => {
 			return [posts[0], ...posts[1]];
+		});
+	},
+	getThreadUpdates(threadId, lastPostId) {
+		let startingId = lastPostId || 0;
+		return Post.findAll({
+			where: {
+				threadId: threadId,
+				id: {
+					$gte: startingId
+				}
+			}
 		});
 	},
 	getBoardThreads(boardName) {

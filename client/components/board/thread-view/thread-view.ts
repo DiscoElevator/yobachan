@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
-import {Router, ActivatedRoute} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {PostComponent} from "./post/post";
 import {BoardService} from "../../../services/board-service";
 import {PostingFormComponent} from "../posting-form/posting-form";
@@ -19,7 +19,6 @@ export class ThreadViewComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private route: ActivatedRoute,
-		private router: Router,
 		private boardService: BoardService) {}
 
 	ngOnInit() {
