@@ -30,7 +30,7 @@ export class BoardService {
 		return this.http.get(`/api/${boardName}/threads`).toPromise().then(res => res.json());
 	}
 
-	getThreadUpdates(threadId: number, startFrom: number = 0) {
+	getRecentPosts(threadId: number, startFrom: number = 0) {
 		let queryParams = new URLSearchParams();
 		queryParams.set("startFrom", `${startFrom}`);
 		return this.http.get(`/api/thread/${threadId}`, {search: queryParams}).toPromise().then(res => res.json());

@@ -15,14 +15,14 @@ export class ThreadViewComponent implements OnInit, OnDestroy {
 	private threadId: number;
 	private boardName: string;
 
-	private sub: any;
+	private routeParamsSub: any;
 
 	constructor(
 		private route: ActivatedRoute,
 		private boardService: BoardService) {}
 
 	ngOnInit() {
-		this.sub = this.route.params.subscribe(params => {
+		this.routeParamsSub = this.route.params.subscribe(params => {
 			this.threadId = params["threadId"];
 			this.boardName = params["boardName"];
 			this.boardService.getThreadPosts(params["threadId"]).then(posts => {
@@ -32,11 +32,14 @@ export class ThreadViewComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy() {
-		this.sub.unsubscribe();
+		this.routeParamsSub.unsubscribe();
 	}
 
 	onPostCreated(newPost) {
-		this.posts.push(newPost);
+		let startIndex = this.posts[this.posts.length - 1].id;
+		this.boardService.getRecentPosts(this.threadId, startIndex).then(posts => {
+			this.posts = [...this.posts, ...posts];
+		});
 	}
 
 	onPostingError(err) {

@@ -85,7 +85,7 @@ module.exports = {
 			where: {
 				threadId: threadId,
 				id: {
-					$gte: startingId
+					$gt: startingId
 				}
 			}
 		});

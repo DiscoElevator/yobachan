@@ -31,7 +31,7 @@ gulp.task("assets", ["clean"], () => {
 });
 
 gulp.task("build", ["clean"], () => {
-	let bundler = browserify(SRC_DIR + "/main.ts")
+	let bundler = browserify(SRC_DIR + "/main.ts", {debug: true})
 			.plugin(tsify)
 			.transform(inlineTemplates);
 	return bundler
