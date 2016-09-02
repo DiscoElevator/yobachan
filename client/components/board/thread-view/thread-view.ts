@@ -36,8 +36,8 @@ export class ThreadViewComponent implements OnInit, OnDestroy {
 	}
 
 	onPostCreated(newPost) {
-		let startIndex = this.posts[this.posts.length - 1].id;
-		this.boardService.getRecentPosts(this.threadId, startIndex).then(posts => {
+		let lastPostId = this.posts[this.posts.length - 1].id;
+		this.boardService.getRecentPosts(this.threadId, lastPostId).then(posts => {
 			this.posts = [...this.posts, ...posts];
 		});
 	}

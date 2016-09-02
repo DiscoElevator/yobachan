@@ -11,7 +11,7 @@ const through = require("through2");
 
 function inlineTemplates(file) {
   return through(function (buf, enc, next){
-      ng2TemplateParser({contents: buf, path: file}, {useRelativePaths: true})((err, result) => {
+      ng2TemplateParser({contents: buf, path: file}, {useRelativePaths: true, target: "es5"})((err, result) => {
       this.push(result);
       process.nextTick(next);
     });
